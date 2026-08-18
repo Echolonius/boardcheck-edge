@@ -1,0 +1,191 @@
+# Boardcheck Edge Oracle — Full Machine-Readable Specification
+
+> Complete protocol reference, MCP tool schemas, REST API documentation, AMS-001..005 detection algorithms, and autonomous Solana Pay settlement instructions.
+
+---
+
+## 1. System Overview
+
+Boardcheck Edge is a globally distributed, sub-50ms security oracle designed to protect autonomous AI agents from malicious marketplaces, ghost bounties, compute-draining scams, and synthetic listing clusters.
+
+- **Primary URL**: `https://boardcheck.agentintegrity.org`
+- **MCP Endpoint**: `https://boardcheck.agentintegrity.org/mcp`
+- **Protocol Support**: Remote MCP (SSE & Streamable HTTP), REST API, Local CLI (`npx -y boardcheck-edge`)
+- **Payment Method**: Native Solana on-chain transfer via Solana Pay (No KYC, instant issuance)
+
+---
+
+## 2. Remote MCP Client Configuration
+
+### Claude Desktop (`claude_desktop_config.json`)
+```json
+{
+  "mcpServers": {
+    "boardcheck": {
+      "url": "https://boardcheck.agentintegrity.org/mcp",
+      "headers": {
+        "Authorization": "Bearer bc_live_YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+### Cursor (`.cursor/mcp.json`)
+```json
+{
+  "mcpServers": {
+    "boardcheck": {
+      "url": "https://boardcheck.agentintegrity.org/mcp"
+    }
+  }
+}
+```
+
+### Antigravity / Custom Agent Frameworks
+```json
+{
+  "mcpServers": {
+    "boardcheck": {
+      "command": "npx",
+      "args": ["-y", "boardcheck-edge"],
+      "env": {
+        "BOARDCHECK_API_KEY": "bc_live_YOUR_API_KEY",
+        "BOARDCHECK_ENDPOINT": "https://boardcheck.agentintegrity.org"
+      }
+    }
+  }
+}
+```
+
+---
+
+## 3. MCP Tools Definition & Schemas
+
+### Tool 1: `boardcheck_scan_listings`
+- **Description**: Scan an array of job/task listings to audit marketplace integrity.
+- **Input Parameters**:
+  - `listings` (array of objects, required):
+    - `id` (string, required): Listing unique ID.
+    - `title` (string, optional): Title or headline.
+    - `created_at` (string ISO-8601, optional): Timestamp.
+    - `views` (number, optional): View count.
+    - `applications` (number, optional): Application count.
+    - `budget` (number, optional): Advertised compensation.
+    - `has_escrow` (boolean, optional): Escrow lock status.
+    - `has_payment_evidence` (boolean, optional): Verifiable payment proof.
+    - `is_self_advertisement` (boolean, optional): Supply marketing flag.
+- **Output Return**:
+  - `verdict` ("clear" | "caution" | "high_risk")
+  - `summary` ({ "info": number, "warn": number, "high": number })
+  - `coverage` (Coverage metrics)
+  - `findings` (Array of fired AMS indicators with affected IDs)
+
+### Tool 2: `boardcheck_verify_single_task`
+- **Description**: Fast pre-flight check before an agent commits compute or generates deliverables.
+- **Input Parameters**:
+  - `id` (string, required): Task ID.
+  - `budget` (number, optional): Budget offered.
+  - `has_escrow` (boolean, optional): Escrow verification.
+  - `has_payment_evidence` (boolean, optional): Payment proof.
+  - `views` (number, optional): View count.
+  - `applications` (number, optional): Application count.
+- **Output Return**:
+  - `task_id` (string)
+  - `verdict` ("clear" | "caution" | "high_risk")
+  - `is_safe_to_execute` (boolean)
+  - `advisory` (string guidance message)
+  - `findings` (Array of findings)
+
+### Tool 3: `boardcheck_spec_info`
+- **Description**: Inspect mathematical criteria and detection rules for `AMS-001` through `AMS-005`.
+- **Input Parameters**:
+  - `indicator_id` (string enum: `"AMS-001" | "AMS-002" | "AMS-003" | "AMS-004" | "AMS-005"`).
+
+---
+
+## 4. AMS Detection Algorithms (AMS-001 through AMS-005)
+
+1. **AMS-001 (View-Application Inversion)**:
+   - *Condition*: `applications > views` OR (`applications > 0` AND `views == 0`).
+   - *Severity*: `high` (if views == 0) or `warn`.
+   - *Rationale*: Applications without views violate basic causal mechanics.
+2. **AMS-002 (Batch Creation Clustering)**:
+   - *Condition*: >= 4 listings created within <= 1.000s timestamp window.
+   - *Severity*: `high`.
+   - *Rationale*: Synthetic automated seeding to fake market depth.
+3. **AMS-003 (Self-Advertisement Ratio)**:
+   - *Condition*: `count(is_self_advertisement == true) / total >= 0.50`.
+   - *Severity*: `high` (if >= 0.75) or `warn` (if >= 0.50).
+   - *Rationale*: Disguises agent supply glut as genuine buyer demand.
+4. **AMS-004 (Unpaid Work Risk / AML & Escrow Check)**:
+   - *Condition*: `budget > 0` AND `has_escrow == false` AND `has_payment_evidence == false`.
+   - *Severity*: `high`.
+   - *Rationale*: Agents burn tokens on ghost work with no escrow or cryptographic payout guarantee.
+5. **AMS-005 (High-Budget Bait)**:
+   - *Condition*: `budget >= 3.0 * median(budgets)` AND `views == 0`.
+   - *Severity*: `warn`.
+   - *Rationale*: Honeypot bounties engineered to phish agent prompts and private keys.
+
+---
+
+## 5. Autonomous On-Chain Payment Protocol (Solana Pay)
+
+Agents can autonomously purchase API credits without human assistance using `@solana/web3.js` or python `solana-py`:
+
+### Pricing Tiers
+- **Starter (`tier_starter`)**: `0.05 SOL` -> 5,000 API Credits
+- **Agent Fleet (`tier_fleet`)**: `0.20 SOL` -> 25,000 API Credits
+- **Enterprise (`tier_enterprise`)**: `0.75 SOL` -> 150,000 API Credits
+
+### Step-by-Step Autonomous Purchase:
+1. Fetch recipient wallet & tier info: `GET /api/v1/pay/tiers`
+2. Create invoice: `POST /api/v1/pay/invoice` `{ "tierId": "tier_starter" }`
+3. Agent sends SOL transfer transaction on Solana network.
+4. Verify on-chain signature: `POST /api/v1/pay/verify`
+   ```json
+   {
+     "signature": "5K...solana_tx_signature...",
+     "tierId": "tier_starter"
+   }
+   ```
+5. Response delivers active Bearer key:
+   ```json
+   {
+     "success": true,
+     "apiKey": "bc_live_9f83a...",
+     "creditsRemaining": 5000,
+     "message": "Payment confirmed on Solana. API key is active immediately."
+   }
+   ```
+
+---
+
+## 6. REST API Reference
+
+### Health Check
+- `GET /api/v1/health` -> `{ "status": "ok", "standard": "AMS-001..AMS-005", "version": "1.0.0" }`
+
+### Bulk Scan
+- `POST /api/v1/scan`
+- Body: `[ { "id": "task-1", "budget": 100, ... } ]`
+- Headers: `Authorization: Bearer <key>` (Optional)
+
+### Single Task Pre-Flight Verify
+- `POST /api/v1/verify`
+- Body: `{ "id": "task-1", "budget": 100, "has_escrow": true, "has_payment_evidence": true }`
+
+### Pricing Tiers
+- `GET /api/v1/pay/tiers`
+
+### Solana Pay Invoice Creation
+- `POST /api/v1/pay/invoice`
+- Body: `{ "tierId": "tier_starter" }`
+
+### Solana Pay Signature Verification
+- `POST /api/v1/pay/verify`
+- Body: `{ "signature": "...", "tierId": "tier_starter" }`
+
+### Free Trial Key Issuance
+- `POST /api/v1/pay/free-key`
+- Body: `{ "wallet": "..." }`

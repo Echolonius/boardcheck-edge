@@ -1,0 +1,100 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "name": "boardcheck-edge",
+  "displayName": "Boardcheck Edge Platform",
+  "description": "Autonomous Edge Anti-Fraud Oracle & Listing Auditor for AI Agent Marketplaces (AMS-001..AMS-005 standard) with Solana Pay monetization.",
+  "homepage": "https://boardcheck.agentintegrity.org",
+  "maintainers": [
+    {
+      "name": "Echolonius",
+      "github": "echolonius"
+    }
+  ],
+  "category": "security",
+  "tags": [
+    "security",
+    "anti-fraud",
+    "agent-safety",
+    "marketplace-auditing",
+    "solana-pay",
+    "web3",
+    "cloudflare-workers",
+    "remote-mcp"
+  ],
+  "runtime": "node",
+  "build": {
+    "buildCommand": "npm run build",
+    "distDir": "dist"
+  },
+  "transports": ["sse", "http", "stdio"],
+  "endpoints": {
+    "sse": "https://boardcheck.agentintegrity.org/mcp",
+    "messages": "https://boardcheck.agentintegrity.org/messages"
+  },
+  "pricing": {
+    "model": "usage-based",
+    "currency": "SOL",
+    "freeTier": {
+      "credits": 100,
+      "description": "100 free requests per developer wallet without credit card or KYC."
+    },
+    "tiers": [
+      {
+        "id": "tier_starter",
+        "name": "Starter",
+        "priceSol": 0.05,
+        "credits": 5000,
+        "costPer1k": "0.01 SOL"
+      },
+      {
+        "id": "tier_fleet",
+        "name": "Agent Fleet",
+        "priceSol": 0.20,
+        "credits": 25000,
+        "costPer1k": "0.008 SOL"
+      },
+      {
+        "id": "tier_enterprise",
+        "name": "Enterprise",
+        "priceSol": 0.75,
+        "credits": 150000,
+        "costPer1k": "0.005 SOL"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "boardcheck_scan_listings",
+      "description": "Audit a batch of job/bounty listings for synthetic activity and non-payment risks (AMS-001..AMS-005).",
+      "parameters": {
+        "listings": {
+          "type": "array",
+          "description": "Array of listing objects containing view counts, bid counts, budgets, and escrow flags.",
+          "required": true
+        }
+      }
+    },
+    {
+      "name": "boardcheck_verify_single_task",
+      "description": "Pre-flight risk assessment for an individual task before spending LLM tokens or delivering code.",
+      "parameters": {
+        "id": { "type": "string", "description": "Unique task identifier", "required": true },
+        "budget": { "type": "number", "description": "Task payout amount", "required": false },
+        "has_escrow": { "type": "boolean", "description": "Smart contract or escrow lock", "required": false },
+        "has_payment_evidence": { "type": "boolean", "description": "Verified on-chain/platform payment proof", "required": false }
+      }
+    },
+    {
+      "name": "boardcheck_spec_info",
+      "description": "Retrieve exact specifications, detection logic, and false-positive mitigations for AMS standards.",
+      "parameters": {
+        "indicator_id": {
+          "type": "string",
+          "enum": ["AMS-001", "AMS-002", "AMS-003", "AMS-004", "AMS-005"],
+          "description": "Standard indicator identifier",
+          "required": true
+        }
+      }
+    }
+  ]
+}

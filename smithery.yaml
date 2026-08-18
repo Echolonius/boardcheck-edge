@@ -1,0 +1,127 @@
+# Smithery.ai Configuration Manifest for Boardcheck Edge
+name: boardcheck-edge
+version: 1.0.0
+description: "Zero-maintenance edge oracle and Remote MCP server for AI agent marketplace auditing, anti-fraud detection (AMS-001..005), and Solana Pay credit settlements."
+author: Echolonius
+license: MIT
+homepage: "https://boardcheck.agentintegrity.org"
+repository: "https://github.com/echolonius/boardcheck-edge"
+
+# Transport & Launch Configuration
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      apiKey:
+        type: string
+        title: "Boardcheck API Key"
+        description: "Optional Bearer API key (bc_live_...) for high-throughput marketplace scanning. Leave blank for free trial."
+      endpointUrl:
+        type: string
+        title: "Remote MCP Server URL"
+        description: "Public edge endpoint for Boardcheck MCP server."
+        default: "https://boardcheck.agentintegrity.org/mcp"
+    exampleConfig:
+      apiKey: "bc_live_sample_token"
+      endpointUrl: "https://boardcheck.agentintegrity.org/mcp"
+  commandFunction: |-
+    (config) => ({
+      command: 'npx',
+      args: ['-y', 'boardcheck-edge'],
+      env: {
+        BOARDCHECK_API_KEY: config.apiKey || '',
+        BOARDCHECK_ENDPOINT: config.endpointUrl || 'https://boardcheck.agentintegrity.org'
+      }
+    })
+
+# Remote MCP Endpoint Definition for Direct HTTP/SSE Clients
+remote:
+  transport: sse
+  url: "https://boardcheck.agentintegrity.org/mcp"
+  messagesUrl: "https://boardcheck.agentintegrity.org/messages"
+  headers:
+    Authorization: "Bearer ${apiKey}"
+
+# Declared Tools
+tools:
+  - name: boardcheck_scan_listings
+    description: "Scan a collection of job/task listings to detect marketplace manipulation, ghost listings, and payment risks (AMS-001..005)."
+    inputSchema:
+      type: object
+      required:
+        - listings
+      properties:
+        listings:
+          type: array
+          description: "List of job listings to audit"
+          items:
+            type: object
+            required:
+              - id
+            properties:
+              id:
+                type: string
+                description: "Unique listing identifier"
+              title:
+                type: string
+                description: "Job or task title"
+              created_at:
+                type: string
+                description: "ISO timestamp of creation"
+              views:
+                type: number
+                description: "Reported view count"
+              applications:
+                type: number
+                description: "Reported application or bid count"
+              budget:
+                type: number
+                description: "Advertised payout or budget amount"
+              has_escrow:
+                type: boolean
+                description: "Whether payout is locked in verifiable escrow"
+              has_payment_evidence:
+                type: boolean
+                description: "Whether cryptographic or platform payment proof exists"
+              is_self_advertisement:
+                type: boolean
+                description: "Whether listing is an agent marketing its own services"
+
+  - name: boardcheck_verify_single_task
+    description: "Pre-flight safety check for an autonomous agent before committing LLM compute or delivering code to a specific task."
+    inputSchema:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          description: "Task or listing ID"
+        budget:
+          type: number
+          description: "Payout budget"
+        has_escrow:
+          type: boolean
+          description: "Is payment locked in smart contract or verified platform escrow?"
+        has_payment_evidence:
+          type: boolean
+          description: "Is there on-chain or platform payment proof?"
+        views:
+          type: number
+          description: "Total views on the task"
+        applications:
+          type: number
+          description: "Total applications submitted"
+
+  - name: boardcheck_spec_info
+    description: "Look up exact definitions, severities, and false-positive criteria for Boardcheck indicator IDs (AMS-001 through AMS-005)."
+    inputSchema:
+      type: object
+      required:
+        - indicator_id
+      properties:
+        indicator_id:
+          type: string
+          enum: ["AMS-001", "AMS-002", "AMS-003", "AMS-004", "AMS-005"]
+          description: "Indicator ID to look up"

@@ -1,0 +1,130 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/registry/main/schema.json",
+  "name": "boardcheck-edge",
+  "displayName": "Boardcheck Edge Oracle",
+  "version": "1.0.0",
+  "description": "Zero-maintenance edge oracle and Remote MCP server for AI agent marketplace auditing, anti-fraud detection (AMS-001..AMS-005), and Solana Pay credit settlements.",
+  "vendor": {
+    "name": "Echolonius",
+    "url": "https://boardcheck.agentintegrity.org",
+    "email": "contact@agentintegrity.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/echolonius/boardcheck-edge"
+  },
+  "license": "MIT",
+  "protocolVersion": "2024-11-05",
+  "categories": [
+    "security",
+    "agent-safety",
+    "developer-tools",
+    "crypto",
+    "finance"
+  ],
+  "tags": [
+    "mcp",
+    "agent-safety",
+    "anti-fraud",
+    "fraud-detection",
+    "ams-001",
+    "ams-002",
+    "ams-003",
+    "ams-004",
+    "ams-005",
+    "marketplace-audit",
+    "solana-pay",
+    "edge",
+    "cloudflare-workers"
+  ],
+  "transports": {
+    "sse": {
+      "url": "https://boardcheck.agentintegrity.org/mcp",
+      "messagesUrl": "https://boardcheck.agentintegrity.org/messages"
+    },
+    "http": {
+      "url": "https://boardcheck.agentintegrity.org/mcp"
+    },
+    "stdio": {
+      "command": "npx",
+      "args": ["-y", "boardcheck-edge"]
+    }
+  },
+  "authentication": {
+    "type": "bearer",
+    "header": "Authorization",
+    "prefix": "Bearer ",
+    "description": "API Key formatted as bc_live_<token>. Obtainable instantly on-chain with Solana Pay or via free trial.",
+    "pricingUrl": "https://boardcheck.agentintegrity.org/#pricing",
+    "freeTier": {
+      "credits": 100,
+      "endpoint": "/api/v1/pay/free-key"
+    }
+  },
+  "capabilities": {
+    "tools": [
+      {
+        "name": "boardcheck_scan_listings",
+        "description": "Scan a collection of job/task listings to detect marketplace manipulation, ghost listings, and payment risks (AMS-001..005).",
+        "inputSchema": {
+          "type": "object",
+          "required": ["listings"],
+          "properties": {
+            "listings": {
+              "type": "array",
+              "description": "List of job listings to audit",
+              "items": {
+                "type": "object",
+                "required": ["id"],
+                "properties": {
+                  "id": { "type": "string", "description": "Unique listing identifier" },
+                  "title": { "type": "string", "description": "Job or task title" },
+                  "created_at": { "type": "string", "description": "ISO timestamp of creation" },
+                  "views": { "type": "number", "description": "Reported view count" },
+                  "applications": { "type": "number", "description": "Reported application or bid count" },
+                  "budget": { "type": "number", "description": "Advertised payout or budget amount" },
+                  "has_escrow": { "type": "boolean", "description": "Whether payout is locked in verifiable escrow" },
+                  "has_payment_evidence": { "type": "boolean", "description": "Whether cryptographic or platform payment proof exists" },
+                  "is_self_advertisement": { "type": "boolean", "description": "Whether listing is an agent marketing its own services" }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "boardcheck_verify_single_task",
+        "description": "Pre-flight safety check for an autonomous agent before committing LLM compute or delivering code to a specific task.",
+        "inputSchema": {
+          "type": "object",
+          "required": ["id"],
+          "properties": {
+            "id": { "type": "string", "description": "Task or listing ID" },
+            "budget": { "type": "number", "description": "Payout budget" },
+            "has_escrow": { "type": "boolean", "description": "Is payment locked in smart contract or verified platform escrow?" },
+            "has_payment_evidence": { "type": "boolean", "description": "Is there on-chain or platform payment proof?" },
+            "views": { "type": "number", "description": "Total views on the task" },
+            "applications": { "type": "number", "description": "Total applications submitted" }
+          }
+        }
+      },
+      {
+        "name": "boardcheck_spec_info",
+        "description": "Look up exact definitions, severities, and false-positive criteria for Boardcheck indicator IDs (AMS-001 through AMS-005).",
+        "inputSchema": {
+          "type": "object",
+          "required": ["indicator_id"],
+          "properties": {
+            "indicator_id": {
+              "type": "string",
+              "enum": ["AMS-001", "AMS-002", "AMS-003", "AMS-004", "AMS-005"],
+              "description": "Indicator ID to look up"
+            }
+          }
+        }
+      }
+    ],
+    "prompts": [],
+    "resources": []
+  }
+}

@@ -1,0 +1,21 @@
+# Boardcheck Edge Oracle
+
+> Zero-maintenance edge oracle and Remote Model Context Protocol (MCP) server for autonomous AI agent marketplace auditing, anti-fraud detection (AMS-001..AMS-005), and instant Solana Pay on-chain credit replenishment.
+
+## Core Capabilities
+- [AMS Standard Specification](/api/v1/health): Open integrity standard for agent marketplaces (AMS-001 View Inversion, AMS-002 Batch Clustering, AMS-003 Self-Ads, AMS-004 Unpaid Work Risk, AMS-005 High-Budget Bait).
+- [Fast Pre-Flight Verification](/api/v1/verify): Sub-50ms check to prevent agents from executing unbacked or fraudulent bounties.
+- [Batch Marketplace Auditing](/api/v1/scan): Scan entire platform feeds for synthetic activity and wash-trading.
+
+## Agent MCP Connection
+- [Remote MCP SSE Endpoint](/mcp): Streamable SSE endpoint for Claude Desktop, Cursor, Antigravity, and autonomous frameworks.
+- [Remote MCP Messages Endpoint](/messages): Message transport handler for interactive JSON-RPC sessions.
+
+## Autonomous Payments & On-Chain Credit Quotas
+- [Solana Pay Pricing Tiers](/api/v1/pay/tiers): Starter (0.05 SOL / 5K credits), Agent Fleet (0.20 SOL / 25K credits), Enterprise (0.75 SOL / 150K credits).
+- [Generate Payment Invoice](/api/v1/pay/invoice): Create standard Solana Pay URL and reference key.
+- [Verify Transaction & Issue Key](/api/v1/pay/verify): On-chain signature verification granting immediate API key with zero KYC.
+- [Free Developer Trial Key](/api/v1/pay/free-key): Instant 100-credit API key for sandbox testing.
+
+## Documentation & Deep Dive
+- [Full LLM Specification](/llms-full.txt): Complete schemas, integration code examples, math formulas, and autonomous keypair top-up scripts.

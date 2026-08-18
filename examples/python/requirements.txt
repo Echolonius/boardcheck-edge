@@ -1,0 +1,17 @@
+# Core HTTP and Validation (Required for basic verification & buyer)
+requests>=2.31.0
+pydantic>=2.0.0
+
+# Optional: LangChain Framework Integration (examples/python/02_langchain_agent.py)
+langchain-core>=0.3.0
+langchain>=0.3.0
+
+# Optional: CrewAI Framework Integration (examples/python/03_crewai_agent.py)
+crewai>=0.80.0
+
+# Optional: Hugging Face Smolagents Integration (examples/python/04_smolagents_bot.py)
+smolagents>=1.0.0
+
+# Optional: On-Chain Solana Client (examples/python/05_autonomous_solana_buyer.py)
+solana>=0.34.0
+solders>=0.21.0

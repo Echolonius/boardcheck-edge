@@ -1,3 +1,5 @@
+import * as fs from "node:fs";
+import * as path from "node:path";
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
 import { apiRouter } from "./routes/api.js";
@@ -11,6 +13,40 @@ const app = new Hono();
 // Serve developer web portal and live auditor UI
 app.get("/", (c) => {
   return c.html(renderWebPortal());
+});
+
+// Serve agentic discovery index (llms.txt)
+app.get("/llms.txt", (c) => {
+  try {
+    const filePath = path.resolve(process.cwd(), "llms.txt");
+    const content = fs.readFileSync(filePath, "utf-8");
+    return c.text(content, 200, {
+      "Content-Type": "text/plain; charset=utf-8",
+    });
+  } catch {
+    return c.text(
+      "# Boardcheck Edge Oracle\n> Zero-maintenance edge oracle and Remote Model Context Protocol (MCP) server for autonomous AI agent marketplace auditing, anti-fraud detection (AMS-001..AMS-005), and instant Solana Pay on-chain credit replenishment.\n",
+      200,
+      { "Content-Type": "text/plain; charset=utf-8" }
+    );
+  }
+});
+
+// Serve complete agentic context (llms-full.txt)
+app.get("/llms-full.txt", (c) => {
+  try {
+    const filePath = path.resolve(process.cwd(), "llms-full.txt");
+    const content = fs.readFileSync(filePath, "utf-8");
+    return c.text(content, 200, {
+      "Content-Type": "text/plain; charset=utf-8",
+    });
+  } catch {
+    return c.text(
+      "# Boardcheck Edge Oracle — Full Machine-Readable Specification\n> Complete protocol reference, MCP tool schemas, REST API documentation, AMS-001..005 detection algorithms, and autonomous Solana Pay settlement instructions.\n",
+      200,
+      { "Content-Type": "text/plain; charset=utf-8" }
+    );
+  }
 });
 
 // Mount API & Payment routes

@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "tsx src/index.ts",
     "build": "tsup src/index.ts src/engine/scanner.ts src/engine/types.ts --format esm --dts",
-    "test": "node --test dist/test/*.test.js || tsx test/engine.test.ts"
+    "test": "tsx --test test/*.test.ts"
   },
   "keywords": [
     "boardcheck",
