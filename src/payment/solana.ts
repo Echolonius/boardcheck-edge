@@ -38,7 +38,7 @@ export class SolanaPayVerifier {
   private connection: Connection;
 
   constructor(
-    recipientWalletAddress: string = process.env.RECIPIENT_WALLET || "3StZed1j9EVsC3arcpNsfHGPfifmYGQr8CfrXu45LbSg",
+    recipientWalletAddress: string = process.env.RECIPIENT_WALLET || "3wbinZDnWmDxHMLtACNrskwZvRwg4KYbBWw1wuviXXHT",
     rpcUrl?: string
   ) {
     this.recipientWallet = new PublicKey(recipientWalletAddress);
