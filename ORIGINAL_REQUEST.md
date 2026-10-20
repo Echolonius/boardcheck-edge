@@ -4,7 +4,6 @@
 
 Build an enterprise-grade, high-converting web platform and autonomous distribution engine for Boardcheck. Bolster the web portal with high-end interactive visualizers, and package complete launch kits, MCP directory manifests (Smithery, MCP Index, Glama), and programmatic outreach for AI agent builders to drive immediate traction and on-chain API credit sales.
 
-Working directory: C:\Users\imthe\.gemini\antigravity\scratch\boardcheck-edge
 Integrity mode: development
 
 ## Requirements
