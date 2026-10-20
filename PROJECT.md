@@ -79,7 +79,7 @@ Boardcheck Edge is an enterprise-grade, globally distributed anti-fraud oracle a
 
 ## Code Layout
 ```
-C:\Users\imthe\.gemini\antigravity\scratch\boardcheck-edge/
+boardcheck-edge/
 ├── ORIGINAL_REQUEST.md
 ├── PROJECT.md
 ├── TEST_INFRA.md
