@@ -2,6 +2,8 @@
 
 > Zero-maintenance edge oracle and Remote Model Context Protocol (MCP) server for autonomous AI agent marketplace auditing, anti-fraud detection (AMS-001..AMS-005), and instant Solana Pay on-chain credit replenishment.
 
+**Status: unfinished prototype, never launched.** There is no hosted service, and no API keys or credits are for sale. Do not send payments to any wallet address in this repository or its history. The maintained project is https://github.com/Echolonius/boardcheck.
+
 ## Core Capabilities
 - [AMS Standard Specification](/api/v1/health): Open integrity standard for agent marketplaces (AMS-001 View Inversion, AMS-002 Batch Clustering, AMS-003 Self-Ads, AMS-004 Unpaid Work Risk, AMS-005 High-Budget Bait).
 - [Fast Pre-Flight Verification](/api/v1/verify): Sub-50ms check to prevent agents from executing unbacked or fraudulent bounties.

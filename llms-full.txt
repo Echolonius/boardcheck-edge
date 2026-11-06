@@ -2,6 +2,8 @@
 
 > Complete protocol reference, MCP tool schemas, REST API documentation, AMS-001..005 detection algorithms, and autonomous Solana Pay settlement instructions.
 
+**Status: unfinished prototype, never launched.** There is no hosted service, and no API keys or credits are for sale. Do not send payments to any wallet address in this repository or its history. The maintained project is https://github.com/Echolonius/boardcheck.
+
 ---
 
 ## 1. System Overview
@@ -130,6 +132,8 @@ Boardcheck Edge is a globally distributed, sub-50ms security oracle designed to 
 ---
 
 ## 5. Autonomous On-Chain Payment Protocol (Solana Pay)
+
+Prototype only: these credits were never offered, and there is no service to buy them from. Do not send SOL or USDC to any address.
 
 Agents can autonomously purchase API credits without human assistance using `@solana/web3.js` or python `solana-py`:
 
