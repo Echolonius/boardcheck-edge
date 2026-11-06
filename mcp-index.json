@@ -1,9 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/registry/main/schema.json",
   "name": "boardcheck-edge",
-  "displayName": "Boardcheck Edge Oracle",
+  "displayName": "Boardcheck Edge (unfinished prototype, never launched)",
   "version": "1.0.0",
-  "description": "Zero-maintenance edge oracle and Remote MCP server for AI agent marketplace auditing, anti-fraud detection (AMS-001..AMS-005), and Solana Pay credit settlements.",
+  "description": "Unfinished prototype, never launched: Remote MCP server and REST API for auditing AI-agent marketplace listings (AMS-001..AMS-005). Its draft Solana Pay credits were never offered or sold, and this prototype must not be deployed.",
   "vendor": {
     "name": "Echolonius",
     "url": "https://github.com/Echolonius"
@@ -53,7 +53,7 @@
     "type": "bearer",
     "header": "Authorization",
     "prefix": "Bearer ",
-    "description": "API Key formatted as bc_live_<token>. Obtainable instantly on-chain with Solana Pay or via free trial.",
+    "description": "API key formatted as bc_live_<token>, issued by a server you run yourself (a 100-credit trial key, or the draft Solana Pay flow). No keys or credits were ever offered or sold.",
     "freeTier": {
       "credits": 100,
       "endpoint": "/api/v1/pay/free-key"

@@ -1,8 +1,8 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/server.json",
   "name": "boardcheck-edge",
-  "displayName": "Boardcheck Edge Platform",
-  "description": "Autonomous Edge Anti-Fraud Oracle & Listing Auditor for AI Agent Marketplaces (AMS-001..AMS-005 standard) with Solana Pay monetization.",
+  "displayName": "Boardcheck Edge (unfinished prototype, never launched)",
+  "description": "Unfinished prototype, never launched: an experiment with a hosted, pay-per-use version of Boardcheck (AMS-001..AMS-005 listing checks with a Remote MCP endpoint). Its draft Solana Pay credits were never offered or sold; do not send payments. This prototype must not be deployed: its payment check accepts any confirmed Solana transaction that did not fail, whatever the amount or recipient. The maintained project is https://github.com/Echolonius/boardcheck.",
   "homepage": "https://github.com/Echolonius/boardcheck-edge",
   "maintainers": [
     {
@@ -32,11 +32,13 @@
     "messages": "http://localhost:3000/messages"
   },
   "pricing": {
+    "status": "never offered",
+    "note": "Draft prices from src/payment/solana.ts. Nothing was ever offered or sold, and a payment would get you nothing. Do not send SOL or USDC to any address.",
     "model": "usage-based",
     "currency": "SOL",
     "freeTier": {
       "credits": 100,
-      "description": "100 free requests per developer wallet without credit card or KYC."
+      "description": "Draft only: the code gives a 100-credit trial key on a server you run yourself. No service ever offered one."
     },
     "tiers": [
       {

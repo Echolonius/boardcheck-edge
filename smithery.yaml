@@ -1,7 +1,7 @@
 # Smithery.ai Configuration Manifest for Boardcheck Edge
 name: boardcheck-edge
 version: 1.0.0
-description: "Zero-maintenance edge oracle and Remote MCP server for AI agent marketplace auditing, anti-fraud detection (AMS-001..005), and Solana Pay credit settlements."
+description: "Unfinished prototype, never launched: Remote MCP server and REST API for auditing AI-agent marketplace listings (AMS-001..005). Its draft Solana Pay credits were never offered or sold, and this prototype must not be deployed."
 author: Echolonius
 license: MIT
 homepage: "https://github.com/Echolonius/boardcheck-edge"
