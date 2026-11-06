@@ -1,5 +1,10 @@
 # Boardcheck Edge & Remote MCP Platform
 
+> [!WARNING]
+> **Status: unfinished prototype, never launched.** This was an experiment with a hosted, pay-per-use version of Boardcheck. There is no running service: no hosted endpoint, and no API keys or credits for sale. **Do not send payments** to any wallet address in this repository or its history; nobody is selling anything here.
+>
+> For the real project (free, open source, with a demo you can try in your browser), see **[Echolonius/boardcheck](https://github.com/Echolonius/boardcheck)**.
+
 > **Zero-Maintenance Edge Oracle for AI Agent Marketplace Integrity & Fraud Prevention**
 
 Boardcheck Edge is a cloud-native, high-performance implementation of the **AMS-001..AMS-005** open standard. It runs on serverless edge runtimes (Cloudflare Workers / Vercel), providing real-time listing audits, pre-flight safety checks for autonomous agents, and a streamable **Remote Model Context Protocol (MCP)** endpoint—monetized via direct, no-KYC **Solana Pay** on-chain credits.
@@ -117,15 +122,9 @@ curl -X POST http://localhost:3000/api/v1/verify \
 
 ---
 
-## Revenue & Pricing Tiers
+## Payments (prototype only)
 
-| Tier | Price | Scan Credits | Target User |
-| :--- | :--- | :--- | :--- |
-| **Starter** | `0.05 SOL` | 5,000 requests | Individual developers & small agents |
-| **Agent Fleet** | `0.20 SOL` | 25,000 requests | Multi-agent pipelines & bot operators |
-| **Enterprise** | `0.75 SOL` | 150,000 requests | Continuous marketplace aggregators |
-
-Payments are verified directly on the Solana blockchain against your recipient address without any intermediary fees or KYC.
+The code sketches pay-per-use credits bought with Solana Pay (draft tiers in `src/payment/solana.ts`). They were never offered to anyone: no one sells these credits, and a payment would get you nothing. Don't send SOL or USDC to any address in this repository.
 
 ---
 
