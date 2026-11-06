@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/registry/main/schema.json",
   "name": "boardcheck-edge",
   "displayName": "Boardcheck Edge (unfinished prototype, never launched)",
   "version": "1.0.0",
