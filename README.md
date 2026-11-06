@@ -3,28 +3,28 @@
 > [!WARNING]
 > **Status: unfinished prototype, never launched.** This was an experiment with a hosted, pay-per-use version of Boardcheck. There is no running service: no hosted endpoint, and no API keys or credits for sale. **Do not send payments** to any wallet address in this repository or its history; nobody is selling anything here.
 >
-> **Known flaw:** the payment verifier (`src/payment/solana.ts`) credits any confirmed Solana transaction that did not fail, whatever its amount or recipient, and can credit the same one more than once. This code must not be deployed as is.
+> **Known flaw:** the payment verifier (`src/payment/solana.ts`) credits any confirmed Solana transaction that did not fail, whatever its amount or recipient, and can credit the same one more than once. This prototype must not be deployed.
 >
 > For the real project (free, open source, with a demo you can try in your browser), see **[Echolonius/boardcheck](https://github.com/Echolonius/boardcheck)**.
 
 > **Zero-Maintenance Edge Oracle for AI Agent Marketplace Integrity & Fraud Prevention**
 
-Boardcheck Edge is a cloud-native, high-performance implementation of the **AMS-001..AMS-005** open standard. It runs on serverless edge runtimes (Cloudflare Workers / Vercel), providing real-time listing audits, pre-flight safety checks for autonomous agents, and a streamable **Remote Model Context Protocol (MCP)** endpoint—monetized via direct, no-KYC **Solana Pay** on-chain credits.
+Boardcheck Edge is a TypeScript prototype (built on Hono) with its own port of the **AMS-001..AMS-005** checks, a REST API, a **Remote Model Context Protocol (MCP)** endpoint and a local web page. It was written for Cloudflare Workers and sketches pay-per-use **Solana Pay** credits, but it was never launched: the credits were never offered to anyone, and the code is kept for reference only.
 
 ---
 
 ## Key Features
 
-- ⚡ **Zero Local Hosting**: Runs 100% on Cloudflare Workers / Vercel Edge. Zero server maintenance, zero databases to manage.
+- ⚡ **Written for Cloudflare Workers, never launched**: there is no hosted service, and this prototype must not be deployed (see [Deployment](#deployment-do-not-deploy)). Run it only as a local dev server.
 - 📡 **Modern Remote MCP**: Native HTTP + SSE streaming endpoint (`/mcp`) supporting Claude Desktop, Cursor, Antigravity, and autonomous agent frameworks.
-- 💳 **No-KYC Solana Pay Monetization**: Users and autonomous agents purchase API credits directly in SOL/USDC to your personal Solana wallet address. The edge verifier confirms on-chain transaction signatures and issues API keys instantly.
-- 🛡️ **Full AMS-001..AMS-005 Parity**:
+- 💳 **Draft Solana Pay credits, never offered**: code for selling API credits for SOL (draft tiers in `src/payment/solana.ts`). No one was ever offered or sold these credits, and the payment check is unsafe (see the warning above).
+- 🛡️ **Its own port of AMS-001..AMS-005**, not the same as the reference in [Echolonius/boardcheck](https://github.com/Echolonius/boardcheck): some thresholds and severities differ (for example, AMS-002 here needs 4 listings in the same second and is `high`; the reference needs 3 and is `warn`):
   - `AMS-001` View-Application Inversion (fabricated engagement)
   - `AMS-002` Batch Creation Clustering (automated artificial seeding)
   - `AMS-003` Self-Advertisement Ratio (supply glut disguised as buyer demand)
   - `AMS-004` Unpaid Work Risk (priced work with no escrow and no payment proof)
   - `AMS-005` High-Budget Bait (outlier bounties with zero views)
-- 🌐 **Interactive Developer Portal**: Inlined dark-mode UI with live JSON auditor, sample scam/clean loaders, and 1-click config generators.
+- 🌐 **Local web page**: dark-mode page with a JSON auditor, sample scam/clean loaders and MCP config snippets. Its credit and checkout panels are draft code: nothing on them was ever offered.
 
 ---
 
@@ -37,31 +37,17 @@ npm install
 # Run test suite
 npm test
 
-# Start local edge server
-npm run dev
+# Start the local dev server (it starts only when ENVIRONMENT=development)
+ENVIRONMENT=development npm run dev
 ```
 
-The portal will be available at `http://localhost:3000`.
+The page is then at `http://localhost:3000`.
 
 ---
 
-## 1-Command Edge Deployment
+## Deployment: do not deploy
 
-### Deploy to Cloudflare Workers (Recommended)
-
-1. Set your Solana wallet address in `wrangler.toml` (or via environment secret):
-```toml
-[vars]
-RECIPIENT_WALLET = "YOUR_SOLANA_WALLET_ADDRESS"
-SOLANA_NETWORK = "mainnet-beta"
-```
-
-2. Deploy:
-```bash
-npx wrangler deploy
-```
-
-Your platform is live worldwide with sub-50ms latency.
+This prototype must not be deployed. It was never launched, its credits were never offered, and its payment check would issue paid API keys for transactions that paid nothing (see the warning above). `wrangler.toml` and `workflows/deploy.yml` are kept only as part of the code; GitHub runs workflows only from `.github/workflows/`, not from `workflows/`.
 
 ---
 
