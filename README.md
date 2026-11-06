@@ -3,6 +3,8 @@
 > [!WARNING]
 > **Status: unfinished prototype, never launched.** This was an experiment with a hosted, pay-per-use version of Boardcheck. There is no running service: no hosted endpoint, and no API keys or credits for sale. **Do not send payments** to any wallet address in this repository or its history; nobody is selling anything here.
 >
+> **Known flaw:** the payment verifier (`src/payment/solana.ts`) credits any confirmed Solana transaction that did not fail, whatever its amount or recipient, and can credit the same one more than once. This code must not be deployed as is.
+>
 > For the real project (free, open source, with a demo you can try in your browser), see **[Echolonius/boardcheck](https://github.com/Echolonius/boardcheck)**.
 
 > **Zero-Maintenance Edge Oracle for AI Agent Marketplace Integrity & Fraud Prevention**
