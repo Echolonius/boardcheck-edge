@@ -4,8 +4,8 @@ export function renderWebPortal(): string {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boardcheck Edge — Anti-Fraud Oracle & Remote MCP Server</title>
-  <meta name="description" content="Sub-millisecond anti-fraud oracle and Remote MCP server for autonomous AI agent marketplaces. Evaluates AMS-001..AMS-005 open integrity standards with zero-KYC Solana Pay on-chain credit issuance.">
+  <title>Boardcheck Edge — unfinished prototype, never launched</title>
+  <meta name="description" content="Unfinished prototype, never launched: a local preview of an AMS-001..AMS-005 listing checker with a Remote MCP endpoint. Its draft Solana Pay credits were never offered or sold, and this prototype must not be deployed.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -120,6 +120,16 @@ export function renderWebPortal(): string {
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-purple-600 selection:text-white antialiased">
 
+  <!-- Prototype status: never launched, never offered, do not deploy -->
+  <div role="alert" class="bg-red-950 border-b border-red-800 text-red-100 text-sm px-4 py-3">
+    <div class="max-w-7xl mx-auto leading-relaxed">
+      <strong class="font-bold text-white">Unfinished prototype, never launched.</strong>
+      Nothing on this page was ever offered or sold: the API credits, prices and Solana Pay checkout are draft code, there is no hosted service, and a payment would get you nothing. Do not send SOL or USDC to any address.
+      <strong class="font-bold text-white">Do not deploy this prototype:</strong> its payment check accepts any confirmed Solana transaction that did not fail as payment, whatever its amount or recipient.
+      The maintained project is <a href="https://github.com/Echolonius/boardcheck" class="underline font-semibold text-white">Echolonius/boardcheck</a>.
+    </div>
+  </div>
+
   <!-- Toast Container -->
   <div id="toastContainer" class="fixed top-5 right-5 z-[9999] flex flex-col gap-3 pointer-events-none max-w-sm w-full px-4" aria-live="polite"></div>
 
@@ -131,15 +141,15 @@ export function renderWebPortal(): string {
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
-        <span class="text-gray-300 font-semibold tracking-wide">EDGE NETWORK ORACLE</span>
+        <span class="text-gray-300 font-semibold tracking-wide">PROTOTYPE · NEVER LAUNCHED</span>
         <span class="text-gray-600">|</span>
         <span id="telemetryStatus" class="text-purple-300 font-mono">STANDARDS: AMS-001..AMS-005 ACTIVE</span>
       </div>
       <div id="telemetryStream" class="hidden md:flex items-center gap-6 text-gray-400 overflow-hidden whitespace-nowrap text-[11px]">
-        <span class="text-gray-400">LATENCY: <strong class="text-emerald-400 font-mono" id="edgeLatencyTag">&lt; 1ms</strong> (Global Edge)</span>
-        <span>AUDITED: <strong class="text-white font-mono" id="bountiesAuditedTag">52,480+</strong> bounties</span>
-        <span>FALSE POSITIVE SLA: <strong class="text-emerald-400 font-mono">0.00%</strong></span>
-        <span>SOLANA NETWORK: <strong class="text-oracle-solana font-mono">LIVE (Mainnet / Devnet)</strong></span>
+        <span class="text-gray-400">LOCAL PREVIEW ONLY</span>
+        <span>NO HOSTED SERVICE</span>
+        <span>CREDITS: <strong class="text-amber-400 font-mono">NEVER OFFERED</strong></span>
+        <span>DEPLOY: <strong class="text-red-400 font-mono">DO NOT</strong></span>
       </div>
     </div>
   </div>
@@ -179,7 +189,7 @@ export function renderWebPortal(): string {
         </button>
         <button onclick="openSolanaPayModal()" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium text-xs font-mono shadow-md shadow-purple-600/30 transition flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5 text-oracle-solana" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l-10-5v6l10 5 10-5v-6l-10 5zm0 7l-10-5v6l10 5 10-5v-6l-10 5z"/></svg>
-          <span>Top-Up Credits</span>
+          <span>Draft Checkout</span>
         </button>
       </div>
     </div>
@@ -189,7 +199,7 @@ export function renderWebPortal(): string {
   <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-8 text-center relative">
     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-card border border-purple-500/30 text-purple-300 text-xs font-mono mb-6 shadow-inner">
       <span class="w-2 h-2 rounded-full bg-oracle-safe animate-pulse"></span>
-      <span>Autonomous Oracle · Zero KYC · Sub-Millisecond Execution</span>
+      <span>Unfinished prototype · Never launched · Do not deploy</span>
     </div>
     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.15]">
       Protect Your AI Agents From <br class="hidden sm:inline" />
@@ -224,7 +234,7 @@ export function renderWebPortal(): string {
           <div id="activeCreditsDisplay" class="font-bold text-emerald-400 font-mono text-lg">100</div>
         </div>
         <button onclick="openSolanaPayModal()" class="px-3 py-1.5 rounded-lg bg-surface-highlight hover:bg-purple-600/40 text-purple-200 text-xs font-mono font-medium border border-purple-500/30 transition flex items-center gap-1.5">
-          <span>+ Add SOL</span>
+          <span>Draft Checkout</span>
         </button>
       </div>
     </div>
@@ -517,17 +527,17 @@ export function renderWebPortal(): string {
       <div class="glass-panel-glow rounded-xl p-5 border border-purple-500/40 flex flex-col justify-between bg-purple-950/20">
         <div>
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono text-purple-300 font-bold">EDGE EXECUTION SLA</span>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800">GUARANTEED</span>
+            <span class="text-xs font-mono text-purple-300 font-bold">DEPLOYMENT</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-red-950 text-red-300 border border-red-800">DO NOT DEPLOY</span>
           </div>
-          <h4 class="font-bold text-sm text-white">Sub-50ms Global Response</h4>
+          <h4 class="font-bold text-sm text-white">Never launched</h4>
           <p class="text-xs text-purple-200/70 mt-2 leading-relaxed">
-            Zero database queries. Pure in-memory AST scan logic running on Cloudflare Workers edge nodes across 300+ global data centers.
+            Written for Cloudflare Workers, but never launched: there is no hosted service. This prototype must not be deployed, because its payment check is unsafe. Run it only on your own machine.
           </p>
         </div>
         <div class="mt-4 pt-3 border-t border-purple-800/40 flex items-center justify-between text-[11px] font-mono text-purple-300">
-          <span>Throughput: <strong>10,000+ req/sec</strong></span>
-          <span class="text-emerald-400">✓ 100% Up</span>
+          <span>Status: <strong>prototype</strong></span>
+          <span class="text-amber-400">Local preview only</span>
         </div>
       </div>
 
@@ -602,11 +612,11 @@ export function renderWebPortal(): string {
   <section id="solana-pay" class="max-w-7xl mx-auto px-4 sm:px-6 py-12 border-t border-surface-border">
     <div class="text-center max-w-3xl mx-auto mb-12">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-oracle-solana/10 border border-oracle-solana/30 text-oracle-solana text-xs font-mono mb-4">
-        <span>⚡ Instant Zero-KYC Solana Pay Settlement</span>
+        <span>Draft only · Never offered</span>
       </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Purchase On-Chain API Credits</h2>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Draft Credit Tiers (Never Offered)</h2>
       <p class="text-gray-400 text-sm mt-3">
-        Pay directly from Phantom, Solflare, or autonomous wallet scripts. The Solana Pay oracle validates signatures instantly and credits your API key on the edge.
+        These prices are draft values from the prototype's code. They were never offered or sold, there is no service behind them, and a payment would get you nothing. Do not send SOL or USDC to any address. The checkout below is kept only as prototype code and must not be deployed: it accepts any confirmed Solana transaction that did not fail as payment, whatever its amount or recipient.
       </p>
     </div>
 
@@ -651,7 +661,7 @@ export function renderWebPortal(): string {
       <!-- Fleet Tier (Popular) -->
       <div class="glass-panel-glow rounded-2xl p-6 flex flex-col justify-between border-2 border-purple-500 relative bg-surface-panel/70">
         <div class="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[10px] font-extrabold uppercase tracking-wider font-mono shadow-md">
-          Most Popular
+          Never Sold
         </div>
 
         <div>
@@ -741,10 +751,14 @@ export function renderWebPortal(): string {
           </div>
         </div>
         <div>
-          <h3 id="modalTitle" class="font-extrabold text-base text-white">Solana Pay Instant Top-Up</h3>
+          <h3 id="modalTitle" class="font-extrabold text-base text-white">Draft Checkout (Never Offered)</h3>
           <p class="text-xs text-gray-400 font-mono" id="modalTierSubtitle">Select a plan to generate on-chain invoice</p>
         </div>
       </div>
+
+      <p class="mb-4 p-2.5 rounded-lg bg-red-950 border border-red-800 text-red-100 text-xs leading-relaxed">
+        Prototype only: these credits were never offered or sold. Do not pay. A payment would get you nothing, and this prototype must not be deployed.
+      </p>
 
       <!-- Tier Selection Pills in Modal -->
       <div class="grid grid-cols-3 gap-2 mb-4">
@@ -802,7 +816,7 @@ export function renderWebPortal(): string {
           </button>
         </div>
         <div class="flex items-center justify-between mt-2 text-[10px] text-gray-500 font-mono">
-          <span>Instant edge settlement via RPC</span>
+          <span>Prototype only: do not send real payments</span>
           <button onclick="simulateTestPayment()" class="text-purple-400 hover:underline">Simulate Test Tx</button>
         </div>
       </div>
@@ -819,7 +833,7 @@ export function renderWebPortal(): string {
         <span>AMS-001..AMS-005 Open Specification</span>
       </div>
       <div>
-        <span>Global Edge Anti-Fraud Protocol &copy; 2026 Echolonius · Zero External Database Dependencies</span>
+        <span>Unfinished prototype, never launched · Do not deploy · &copy; 2026 Echolonius</span>
       </div>
     </div>
   </footer>
