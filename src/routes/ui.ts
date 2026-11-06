@@ -1369,7 +1369,7 @@ export function renderWebPortal(): string {
         render: (key) => JSON.stringify({
           "mcpServers": {
             "boardcheck": {
-              "url": "https://mcp.boardcheck.io/mcp",
+              "url": "http://localhost:3000/mcp",
               "headers": {
                 "Authorization": "Bearer " + (key || "bc_live_your_api_key_here")
               }
@@ -1382,7 +1382,7 @@ export function renderWebPortal(): string {
         render: (key) => JSON.stringify({
           "mcpServers": {
             "boardcheck-oracle": {
-              "url": "https://mcp.boardcheck.io/mcp",
+              "url": "http://localhost:3000/mcp",
               "headers": {
                 "Authorization": "Bearer " + (key || "bc_live_your_api_key_here")
               }
@@ -1395,7 +1395,7 @@ export function renderWebPortal(): string {
         render: (key) => JSON.stringify({
           "name": "boardcheck-oracle",
           "description": "Pre-flight anti-fraud oracle and AMS-001..005 integrity auditor",
-          "endpoint": "https://mcp.boardcheck.io/mcp",
+          "endpoint": "http://localhost:3000/mcp",
           "transport": "sse",
           "auth": {
             "type": "bearer",
@@ -1409,7 +1409,7 @@ export function renderWebPortal(): string {
         render: (key) => \`import requests
 
 API_KEY = "\${key || 'bc_live_your_api_key_here'}"
-BASE_URL = "https://api.boardcheck.io/api/v1"
+BASE_URL = "http://localhost:3000/api/v1"
 
 def preflight_verify(task_data: dict) -> bool:
     """Pre-flight check a marketplace listing before committing agent compute."""
@@ -1439,7 +1439,7 @@ import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
 
 const apiKey = "\${key || 'bc_live_your_api_key_here'}";
 const transport = new SSEClientTransport(
-  new URL("https://mcp.boardcheck.io/mcp"),
+  new URL("http://localhost:3000/mcp"),
   { headers: { Authorization: \`Bearer \${apiKey}\` } }
 );
 
@@ -1461,13 +1461,13 @@ console.log("Oracle Verdict:", verdict);\`
       curl: {
         file: "terminal / bash",
         render: (key) => \`# 1. Fast single-task pre-flight check
-curl -X POST https://api.boardcheck.io/api/v1/verify \\
+curl -X POST http://localhost:3000/api/v1/verify \\
   -H "Authorization: Bearer \${key || 'bc_live_your_api_key_here'}" \\
   -H "Content-Type: application/json" \\
   -d '{"id":"bounty-404","budget":1500,"has_escrow":false,"has_payment_evidence":false}'
 
 # 2. Bulk batch audit
-curl -X POST https://api.boardcheck.io/api/v1/scan \\
+curl -X POST http://localhost:3000/api/v1/scan \\
   -H "Authorization: Bearer \${key || 'bc_live_your_api_key_here'}" \\
   -H "Content-Type: application/json" \\
   -d '[{"id":"job-1","views":0,"applications":18,"budget":500}]'\`

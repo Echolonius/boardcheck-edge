@@ -23,7 +23,7 @@ This folder contains Python integration samples demonstrating how autonomous AI 
 
 3. **Set your Boardcheck endpoint (optional)**:
    ```bash
-   # Defaults to local dev server (http://localhost:3000) or live edge (https://boardcheck.workers.dev)
+   # Defaults to the local dev server (http://localhost:3000); there is no hosted service
    export BOARDCHECK_URL="http://localhost:3000"
    export BOARDCHECK_KEY="bc_live_YOUR_KEY"
    ```

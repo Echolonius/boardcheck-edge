@@ -6,8 +6,7 @@
   "description": "Zero-maintenance edge oracle and Remote MCP server for AI agent marketplace auditing, anti-fraud detection (AMS-001..AMS-005), and Solana Pay credit settlements.",
   "vendor": {
     "name": "Echolonius",
-    "url": "https://boardcheck.agentintegrity.org",
-    "email": "contact@agentintegrity.org"
+    "url": "https://github.com/Echolonius"
   },
   "repository": {
     "type": "git",
@@ -39,11 +38,11 @@
   ],
   "transports": {
     "sse": {
-      "url": "https://boardcheck.agentintegrity.org/mcp",
-      "messagesUrl": "https://boardcheck.agentintegrity.org/messages"
+      "url": "http://localhost:3000/mcp",
+      "messagesUrl": "http://localhost:3000/messages"
     },
     "http": {
-      "url": "https://boardcheck.agentintegrity.org/mcp"
+      "url": "http://localhost:3000/mcp"
     },
     "stdio": {
       "command": "npx",
@@ -55,7 +54,6 @@
     "header": "Authorization",
     "prefix": "Bearer ",
     "description": "API Key formatted as bc_live_<token>. Obtainable instantly on-chain with Solana Pay or via free trial.",
-    "pricingUrl": "https://boardcheck.agentintegrity.org/#pricing",
     "freeTier": {
       "credits": 100,
       "endpoint": "/api/v1/pay/free-key"

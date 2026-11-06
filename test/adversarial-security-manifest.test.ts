@@ -49,7 +49,7 @@ describe("Adversarial Protocol, Security & Manifest Challenger Suite", () => {
       assert.match(content, /startCommand:\s*\n\s*type:\s*stdio/, "startCommand must define stdio transport");
       assert.match(content, /commandFunction:/, "Must define commandFunction for dynamic startup");
       assert.match(content, /remote:\s*\n\s*transport:\s*sse/, "Must define remote sse configuration");
-      assert.match(content, /url:\s*"https:\/\/boardcheck\.agentintegrity\.org\/mcp"/, "Must define remote SSE URL");
+      assert.match(content, /url:\s*"http:\/\/localhost:3000\/mcp"/, "Must define remote SSE URL");
 
       // Verify all 3 tools declared in smithery.yaml
       assert.ok(content.includes("boardcheck_scan_listings"), "Must declare boardcheck_scan_listings");
@@ -110,8 +110,8 @@ describe("Adversarial Protocol, Security & Manifest Challenger Suite", () => {
       assert.equal(glama.name, "boardcheck-edge");
       assert.equal(glama.runtime, "node");
       assert.deepEqual(glama.transports, ["sse", "http", "stdio"]);
-      assert.equal(glama.endpoints.sse, "https://boardcheck.agentintegrity.org/mcp");
-      assert.equal(glama.endpoints.messages, "https://boardcheck.agentintegrity.org/messages");
+      assert.equal(glama.endpoints.sse, "http://localhost:3000/mcp");
+      assert.equal(glama.endpoints.messages, "http://localhost:3000/messages");
 
       // Verify pricing structure
       assert.equal(glama.pricing.model, "usage-based");
@@ -144,7 +144,7 @@ describe("Adversarial Protocol, Security & Manifest Challenger Suite", () => {
       assert.ok(txt2.includes("Boardcheck Edge Oracle — Full Machine-Readable Specification"));
       assert.ok(txt2.includes("AMS-001"));
       assert.ok(txt2.includes("tier_starter"));
-      assert.ok(txt2.includes("https://boardcheck.agentintegrity.org"));
+      assert.ok(txt2.includes("http://localhost:3000"));
     });
   });
 

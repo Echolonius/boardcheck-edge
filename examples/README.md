@@ -43,11 +43,11 @@ examples/
 
 ## Getting a Free Developer API Key
 
-For instant testing with 100 free credits without connecting a wallet:
+There is no hosted service. Your own local dev server (`npm run dev`) issues a test key with 100 free credits without connecting a wallet:
 
 ```bash
 # Using cURL
-curl -X POST https://boardcheck.workers.dev/api/v1/pay/free-key \
+curl -X POST http://localhost:3000/api/v1/pay/free-key \
   -H "Content-Type: application/json" \
   -d '{"wallet": "dev_test_wallet"}'
 ```

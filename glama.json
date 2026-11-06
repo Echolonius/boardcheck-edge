@@ -3,7 +3,7 @@
   "name": "boardcheck-edge",
   "displayName": "Boardcheck Edge Platform",
   "description": "Autonomous Edge Anti-Fraud Oracle & Listing Auditor for AI Agent Marketplaces (AMS-001..AMS-005 standard) with Solana Pay monetization.",
-  "homepage": "https://boardcheck.agentintegrity.org",
+  "homepage": "https://github.com/Echolonius/boardcheck-edge",
   "maintainers": [
     {
       "name": "Echolonius",
@@ -28,8 +28,8 @@
   },
   "transports": ["sse", "http", "stdio"],
   "endpoints": {
-    "sse": "https://boardcheck.agentintegrity.org/mcp",
-    "messages": "https://boardcheck.agentintegrity.org/messages"
+    "sse": "http://localhost:3000/mcp",
+    "messages": "http://localhost:3000/messages"
   },
   "pricing": {
     "model": "usage-based",

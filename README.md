@@ -60,13 +60,13 @@ Your platform is live worldwide with sub-50ms latency.
 
 ## Remote MCP Configuration
 
-Add this to your `claude_desktop_config.json` or `cursor.json`:
+Add this to your `claude_desktop_config.json` or `cursor.json` (it points at your local dev server; there is no hosted endpoint):
 
 ```json
 {
   "mcpServers": {
     "boardcheck": {
-      "url": "https://your-worker-subdomain.workers.dev/mcp",
+      "url": "http://localhost:3000/mcp",
       "headers": {
         "Authorization": "Bearer bc_live_YOUR_KEY"
       }
@@ -86,7 +86,7 @@ Add this to your `claude_desktop_config.json` or `cursor.json`:
 
 ### 1. Fast Pre-Flight Task Check (`POST /api/v1/verify`)
 ```bash
-curl -X POST https://your-domain.com/api/v1/verify \
+curl -X POST http://localhost:3000/api/v1/verify \
   -H "Authorization: Bearer bc_live_..." \
   -H "Content-Type: application/json" \
   -d '{
