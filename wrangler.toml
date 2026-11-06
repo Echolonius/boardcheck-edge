@@ -6,7 +6,7 @@ compatibility_flags = ["nodejs_compat"]
 [vars]
 ENVIRONMENT = "production"
 SOLANA_NETWORK = "mainnet-beta"
-RECIPIENT_WALLET = "3wbinZDnWmDxHMLtACNrskwZvRwg4KYbBWw1wuviXXHT"
+RECIPIENT_WALLET = "YOUR_SOLANA_WALLET_ADDRESS"
 DEFAULT_FREE_CREDITS = "100"
 
 # Optional Cloudflare KV namespace for durable API key quotas

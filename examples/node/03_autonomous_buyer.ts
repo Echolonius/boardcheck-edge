@@ -46,7 +46,7 @@ export class NodeSolanaBuyer {
     }
     return {
       tiers: PAYMENT_TIERS,
-      recipientWallet: "3wbinZDnWmDxHMLtACNrskwZvRwg4KYbBWw1wuviXXHT",
+      recipientWallet: "YOUR_SOLANA_WALLET_ADDRESS",
       network: "devnet",
     };
   }
