@@ -46,7 +46,7 @@
     },
     "stdio": {
       "command": "npx",
-      "args": ["-y", "boardcheck-edge"]
+      "args": ["-y", "github:Echolonius/boardcheck-edge"]
     }
   },
   "authentication": {

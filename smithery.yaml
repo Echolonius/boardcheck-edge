@@ -28,7 +28,7 @@ startCommand:
   commandFunction: |-
     (config) => ({
       command: 'npx',
-      args: ['-y', 'boardcheck-edge'],
+      args: ['-y', 'github:Echolonius/boardcheck-edge'],
       env: {
         BOARDCHECK_API_KEY: config.apiKey || '',
         BOARDCHECK_ENDPOINT: config.endpointUrl || 'http://localhost:3000'

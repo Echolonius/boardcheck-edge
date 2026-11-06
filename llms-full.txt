@@ -10,7 +10,7 @@ Boardcheck Edge is a globally distributed, sub-50ms security oracle designed to 
 
 - **Local URL** (`npm run dev`; there is no hosted service): `http://localhost:3000`
 - **MCP Endpoint**: `http://localhost:3000/mcp`
-- **Protocol Support**: Remote MCP (SSE & Streamable HTTP), REST API, Local CLI (`npx -y boardcheck-edge`)
+- **Protocol Support**: Remote MCP (SSE & Streamable HTTP), REST API, Local CLI (`bin/boardcheck-edge.js`; not published to npm)
 - **Payment Method**: Native Solana on-chain transfer via Solana Pay (No KYC, instant issuance)
 
 ---
@@ -48,7 +48,7 @@ Boardcheck Edge is a globally distributed, sub-50ms security oracle designed to 
   "mcpServers": {
     "boardcheck": {
       "command": "npx",
-      "args": ["-y", "boardcheck-edge"],
+      "args": ["-y", "github:Echolonius/boardcheck-edge"],
       "env": {
         "BOARDCHECK_API_KEY": "bc_live_YOUR_API_KEY",
         "BOARDCHECK_ENDPOINT": "http://localhost:3000"
