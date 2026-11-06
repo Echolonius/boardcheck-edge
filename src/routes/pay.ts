@@ -9,7 +9,7 @@ const verifier = new SolanaPayVerifier();
 payRouter.get("/tiers", (c) => {
   return c.json({
     tiers: PAYMENT_TIERS,
-    recipientWallet: process.env.RECIPIENT_WALLET || "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+    recipientWallet: process.env.RECIPIENT_WALLET || "1nc1nerator11111111111111111111111111111111",
     network: process.env.SOLANA_NETWORK || "devnet",
   });
 });

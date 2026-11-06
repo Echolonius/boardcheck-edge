@@ -38,9 +38,10 @@ export class SolanaPayVerifier {
   private connection: Connection;
 
   constructor(
-    // Falls back to the example address from .env.example (also the /tiers default).
+    // Falls back to Solana's incinerator (burn) address, which no one controls:
+    // SOL sent there is destroyed (also the /tiers default and the .env.example value).
     // Set RECIPIENT_WALLET to your own wallet before taking any payment.
-    recipientWalletAddress: string = process.env.RECIPIENT_WALLET || "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+    recipientWalletAddress: string = process.env.RECIPIENT_WALLET || "1nc1nerator11111111111111111111111111111111",
     rpcUrl?: string
   ) {
     this.recipientWallet = new PublicKey(recipientWalletAddress);

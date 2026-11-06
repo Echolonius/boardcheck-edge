@@ -6,7 +6,7 @@ import { KeyStore } from "../src/payment/keystore.js";
 import app from "../src/index.js";
 
 describe("Solana Pay On-Chain Verification & Monetization Suite", () => {
-  const TEST_RECIPIENT = "3wbinZDnWmDxHMLtACNrskwZvRwg4KYbBWw1wuviXXHT";
+  const TEST_RECIPIENT = "1nc1nerator11111111111111111111111111111111"; // Solana burn address
   const TEST_PAYER = "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM";
   const TEST_REF = "RefPubkey1111111111111111111111111111111111";
 
