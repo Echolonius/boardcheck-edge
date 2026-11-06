@@ -26,7 +26,7 @@
     "buildCommand": "npm run build",
     "distDir": "dist"
   },
-  "transports": ["sse", "http", "stdio"],
+  "transports": ["sse", "http"],
   "endpoints": {
     "sse": "http://localhost:3000/mcp",
     "messages": "http://localhost:3000/messages"

@@ -45,9 +45,10 @@ describe("Adversarial Protocol, Security & Manifest Challenger Suite", () => {
       assert.match(content, /^description:/m, "Manifest must specify description");
       assert.match(content, /^license:\s*MIT/m, "Manifest must specify MIT license");
 
-      // Verify transport configuration
-      assert.match(content, /startCommand:\s*\n\s*type:\s*stdio/, "startCommand must define stdio transport");
-      assert.match(content, /commandFunction:/, "Must define commandFunction for dynamic startup");
+      // Verify transport configuration. No stdio start command: the repository
+      // has no stdio MCP server (npx would only run the bin/ file scanner).
+      assert.doesNotMatch(content, /^startCommand:/m, "Must not declare a stdio startCommand");
+      assert.doesNotMatch(content, /commandFunction:/, "Must not declare an npx commandFunction");
       assert.match(content, /remote:\s*\n\s*transport:\s*sse/, "Must define remote sse configuration");
       assert.match(content, /url:\s*"http:\/\/localhost:3000\/mcp"/, "Must define remote SSE URL");
 
@@ -78,7 +79,7 @@ describe("Adversarial Protocol, Security & Manifest Challenger Suite", () => {
       // Verify transports
       assert.ok(manifest.transports.sse && manifest.transports.sse.url.endsWith("/mcp"));
       assert.ok(manifest.transports.sse.messagesUrl.endsWith("/messages"));
-      assert.ok(manifest.transports.stdio && manifest.transports.stdio.command === "npx");
+      assert.equal(manifest.transports.stdio, undefined, "Must not declare a stdio transport (there is no stdio MCP server)");
 
       // Verify authentication specs
       assert.equal(manifest.authentication.type, "bearer");
@@ -109,7 +110,7 @@ describe("Adversarial Protocol, Security & Manifest Challenger Suite", () => {
 
       assert.equal(glama.name, "boardcheck-edge");
       assert.equal(glama.runtime, "node");
-      assert.deepEqual(glama.transports, ["sse", "http", "stdio"]);
+      assert.deepEqual(glama.transports, ["sse", "http"]);
       assert.equal(glama.endpoints.sse, "http://localhost:3000/mcp");
       assert.equal(glama.endpoints.messages, "http://localhost:3000/messages");
 

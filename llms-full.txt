@@ -44,21 +44,8 @@ Boardcheck Edge is a globally distributed, sub-50ms security oracle designed to 
 }
 ```
 
-### Antigravity / Custom Agent Frameworks
-```json
-{
-  "mcpServers": {
-    "boardcheck": {
-      "command": "npx",
-      "args": ["-y", "github:Echolonius/boardcheck-edge"],
-      "env": {
-        "BOARDCHECK_API_KEY": "bc_live_YOUR_API_KEY",
-        "BOARDCHECK_ENDPOINT": "http://localhost:3000"
-      }
-    }
-  }
-}
-```
+### stdio / npx: not available
+This repository has no stdio MCP server. `npx -y github:Echolonius/boardcheck-edge` would run `bin/boardcheck-edge.js`, a command-line scanner for a JSON file of listings, not an MCP server. The only MCP endpoint in the code is the SSE route `/mcp` shown above, on a dev server you run yourself.
 
 ---
 

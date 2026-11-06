@@ -8,32 +8,12 @@ homepage: "https://github.com/Echolonius/boardcheck-edge"
 repository: "https://github.com/echolonius/boardcheck-edge"
 
 # Transport & Launch Configuration
-startCommand:
-  type: stdio
-  configSchema:
-    type: object
-    properties:
-      apiKey:
-        type: string
-        title: "Boardcheck API Key"
-        description: "Optional Bearer API key (bc_live_...) for high-throughput marketplace scanning. Leave blank for free trial."
-      endpointUrl:
-        type: string
-        title: "Remote MCP Server URL"
-        description: "URL of a Boardcheck Edge server you run yourself (there is no public endpoint)."
-        default: "http://localhost:3000/mcp"
-    exampleConfig:
-      apiKey: "bc_live_sample_token"
-      endpointUrl: "http://localhost:3000/mcp"
-  commandFunction: |-
-    (config) => ({
-      command: 'npx',
-      args: ['-y', 'github:Echolonius/boardcheck-edge'],
-      env: {
-        BOARDCHECK_API_KEY: config.apiKey || '',
-        BOARDCHECK_ENDPOINT: config.endpointUrl || 'http://localhost:3000'
-      }
-    })
+# There is no stdio start command, because this repository has no stdio MCP
+# server. "npx -y github:Echolonius/boardcheck-edge" would run
+# bin/boardcheck-edge.js, a command-line scanner for a JSON file of listings,
+# not an MCP server. The only MCP endpoint in the code is the SSE route below,
+# on a dev server you run yourself. This is an unfinished prototype that was
+# never launched, and it must not be deployed.
 
 # Remote MCP Endpoint Definition for Direct HTTP/SSE Clients
 remote:
@@ -41,7 +21,7 @@ remote:
   url: "http://localhost:3000/mcp"
   messagesUrl: "http://localhost:3000/messages"
   headers:
-    Authorization: "Bearer ${apiKey}"
+    Authorization: "Bearer bc_live_YOUR_KEY"
 
 # Declared Tools
 tools:

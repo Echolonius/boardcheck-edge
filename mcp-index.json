@@ -43,12 +43,9 @@
     },
     "http": {
       "url": "http://localhost:3000/mcp"
-    },
-    "stdio": {
-      "command": "npx",
-      "args": ["-y", "github:Echolonius/boardcheck-edge"]
     }
   },
+  "stdioNote": "No stdio transport: this repository has no stdio MCP server. npx -y github:Echolonius/boardcheck-edge would run bin/boardcheck-edge.js, a command-line scanner for a JSON file of listings, not an MCP server.",
   "authentication": {
     "type": "bearer",
     "header": "Authorization",
