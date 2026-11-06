@@ -130,4 +130,4 @@ The code sketches pay-per-use credits bought with Solana Pay (draft tiers in `sr
 
 ## License
 
-MIT © 2026 Echolonius
+MIT © 2026 Echolonius. See [LICENSE](LICENSE).
